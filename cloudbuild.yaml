@@ -22,7 +22,6 @@ steps:
       - "--allow-unauthenticated"
       - "--set-env-vars"
       - >
-        PORT=3000,
         DB_HOST=34.55.111.115,
         DB_USER=root,
         DB_PASS=,
