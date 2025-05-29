@@ -21,7 +21,7 @@ try {
 import "./models/UsersModel.js";
 import "./models/FormModel.js";
 import "./models/Associations.js";
-await db.sync();
+await db.sync({ force: true });
 
 // Session
 const SequelizeSessionStore = SequelizeStore(session.Store);
@@ -37,6 +37,8 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000,
   }
 }));
+
+await store.sync();
 
 // Middleware
 app.use(express.json());

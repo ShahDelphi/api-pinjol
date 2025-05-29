@@ -7,11 +7,11 @@ const Form = db.define("form", {
     allowNull: true,
   },
   nik: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+  type: DataTypes.STRING,
+  allowNull: false,
   },
   phoneNumber: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   tanggalLahir: {
