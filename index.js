@@ -21,7 +21,7 @@ try {
 import "./models/UsersModel.js";
 import "./models/FormModel.js";
 import "./models/Associations.js";
-await db.sync({ force: true });
+await db.sync();
 
 // Session
 const SequelizeSessionStore = SequelizeStore(session.Store);
