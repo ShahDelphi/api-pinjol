@@ -1,6 +1,7 @@
 import express from "express";
 import session from "express-session";
 import dotenv from "dotenv";
+import cors from "cors"; 
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import router from "./routes/Route.js";
@@ -23,24 +24,30 @@ import "./models/FormModel.js";
 import "./models/Associations.js";
 await db.sync();
 
-// Session
+// Session store
 const SequelizeSessionStore = SequelizeStore(session.Store);
 const store = new SequelizeSessionStore({ db });
 
+// CORS setup (⬅️ Tambahkan ini SEBELUM router)
+app.use(cors({
+  origin: true,         // Izinkan semua origin (auto detect dari request)
+  credentials: true     // Izinkan pengiriman cookie (connect.sid)
+}));
+
+// Session middleware
 app.use(session({
   secret: "secret-pin",
   resave: false,
   saveUninitialized: false,
   store: store,
   cookie: {
-    secure: false, // set true kalau HTTPS
+    secure: false, // set true kalau pakai HTTPS
     maxAge: 24 * 60 * 60 * 1000,
   }
 }));
-
 await store.sync();
 
-// Middleware
+// JSON middleware & routes
 app.use(express.json());
 app.use("/api", router);
 
