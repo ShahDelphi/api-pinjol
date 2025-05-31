@@ -1,4 +1,14 @@
 steps:
+
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        mkdir -p config
+        gcloud secrets versions access latest \
+        --secret=backend-gcs-key > config/gcs-key.json
+
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/api-pinjol", "."]
 
@@ -17,10 +27,7 @@ steps:
         "--allow-unauthenticated",
         "--set-env-vars",
         "DB_HOST=34.55.111.115,DB_USER=root,DB_PASS=,DB_NAME=pinjol_db,NIK_SECRET_KEY=$_NIK_SECRET_KEY,NIK_IV=$_NIK_IV",
-        "--add-secret=gcs-key.json=backend-gcs-key:latest",
-        "--secret-mount=config/"
       ]
-
 options:
   logging: CLOUD_LOGGING_ONLY
 substitutions:
