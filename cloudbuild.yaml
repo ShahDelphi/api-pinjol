@@ -16,7 +16,9 @@ steps:
         "--region", "us-central1",
         "--allow-unauthenticated",
         "--set-env-vars",
-        "DB_HOST=34.55.111.115,DB_USER=root,DB_PASS=,DB_NAME=pinjol_db,NIK_SECRET_KEY=$_NIK_SECRET_KEY,NIK_IV=$_NIK_IV"
+        "DB_HOST=34.55.111.115,DB_USER=root,DB_PASS=,DB_NAME=pinjol_db,NIK_SECRET_KEY=$_NIK_SECRET_KEY,NIK_IV=$_NIK_IV",
+        "--update-secrets",
+        "GOOGLE_APPLICATION_CREDENTIALS=gcs-key:latest"
       ]
 options:
   logging: CLOUD_LOGGING_ONLY

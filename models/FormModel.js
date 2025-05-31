@@ -34,7 +34,11 @@ const Form = db.define("form", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-   userId: {
+  fotoProfil: {
+  type: DataTypes.STRING,
+  allowNull: true, // karena opsional
+  },
+  userId: {
   type: DataTypes.INTEGER,
   allowNull: false
   }
