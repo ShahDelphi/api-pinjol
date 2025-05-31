@@ -34,7 +34,7 @@ export const submitForm = async (req, res) => {
         blobStream.end(req.file.buffer);
       });
 
-      fotoProfilUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+      fotoProfilUrl = `https://storage.googleapis.com/${bucket.name}/${encodeURIComponent(blob.name)}`;
     }
 
     const formData = {
@@ -92,7 +92,7 @@ export const editForm = async (req, res) => {
         blobStream.end(req.file.buffer);
       });
 
-      fotoProfilUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+      fotoProfilUrl = `https://storage.googleapis.com/${bucket.name}/${encodeURIComponent(blob.name)}`;
     }
 
     await form.update({
