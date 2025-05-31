@@ -2,7 +2,7 @@ import { Storage } from "@google-cloud/storage";
 import path from "path";
 
 const storage = new Storage({
-  keyFilename: path.join(process.cwd(), "config", "gcs-key.json"), // ganti sesuai lokasi file key kamu
+  //keyFilename: path.join(process.cwd(), "config", "gcs-key.json"), // ganti sesuai lokasi file key kamu
   projectId: "if-b-08", // sesuaikan dengan ID project
 });
 
